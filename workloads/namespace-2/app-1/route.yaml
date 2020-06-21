@@ -8,7 +8,7 @@ spec:
   host: app-1-subtenant-1-namespace-2.apps-crc.testing
   port:
     targetPort: 8080
-  subdomain: ""
+  # subdomain: ""
   to:
     kind: Service
     name: app-1
