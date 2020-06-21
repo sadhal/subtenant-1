@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-2
+  labels:
+    app: app-2
+spec:
+  replicas: 1
+  minReadySeconds: 5
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 60
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: app-2
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+      labels:
+        app: app-2
+    spec:
+      containers:
+        - name: api-gw
+          image: sadhal/api-gw:0.0.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          env:
+            - name: SPRING_CONFIG_NAME
+              value: application,routes
+            - name: SPRING_CONFIG_LOCATION
+              value: file:///deployments/config/
+            - name: SPRING_PROFILES_ACTIVE
+              value: application,routes
+          volumeMounts:
+            - name: application-config
+              mountPath: "/deployments/config"
+              readOnly: true
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+            requests:
+              cpu: 40m
+              memory: 64Mi
+      volumes:
+        - name: application-config
+          configMap:
+            name: app-2
+            items:
+            - key: application-routes.yml
+              path: application-routes.yml
