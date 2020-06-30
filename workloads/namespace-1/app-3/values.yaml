@@ -1,4 +1,4 @@
-# Default values for app-3-helm.
+# Default values for app-3.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -9,8 +9,8 @@ image:
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+nameOverride: "app-3"
+fullnameOverride: "app-3"
 
 serviceAccount:
   # Specifies whether a service account should be created

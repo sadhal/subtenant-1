@@ -83,6 +83,6 @@ data:
                   - LoggingWithBody=application/json, application/json, false, false
 kind: ConfigMap
 metadata:
-  name: {{ include "app-3-helm.fullname" . }}
+  name: {{ include "app-3.fullname" . }}
   labels:
-    {{- include "app-3-helm.labels" . | nindent 4 }}
+    {{- include "app-3.labels" . | nindent 4 }}
