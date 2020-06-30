@@ -46,21 +46,21 @@ spec:
             httpGet:
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 5
-            timeoutSeconds: 5
+            initialDelaySeconds: 10
+            timeoutSeconds: 15
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 5
-            timeoutSeconds: 5
+            initialDelaySeconds: 8
+            timeoutSeconds: 15
           resources:
             limits:
               cpu: 1000m
               memory: 512Mi
             requests:
               cpu: 40m
-              memory: 64Mi
+              memory: 128Mi
       volumes:
         - name: application-config
           configMap:
