@@ -2,4 +2,4 @@ resources:
   - configmap.yaml
   - service.yaml
   - deployment.yaml
-  - route.yaml
+  # - route.yaml
