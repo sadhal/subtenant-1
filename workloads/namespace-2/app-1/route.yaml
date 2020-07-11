@@ -5,7 +5,7 @@ metadata:
     app.kubernetes.io/instance: app-1
   name: app-1
 spec:
-  host: app-1-subtenant-1-namespace-2.apps-crc.testing
+  # host: app-1-subtenant-1-namespace-2.apps-crc.testing
   port:
     targetPort: 8080
   # subdomain: ""

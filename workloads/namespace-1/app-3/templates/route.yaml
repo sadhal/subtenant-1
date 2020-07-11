@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "app-3.labels" . | nindent 4 }}
 spec:
-  host: {{ include "app-3.fullname" . }}-subtenant-1-namespace-1.apps-crc.testing
+  # host: {{ include "app-3.fullname" . }}-subtenant-1-namespace-1.apps-crc.testing
   port:
     targetPort: 8080
   # subdomain: ""
